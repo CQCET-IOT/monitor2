@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+logging:
+  config: classpath:log.xml
+
+onenet:
+  apiKey: 9UEjFtzBsVdbfr6DaV9VvLM3kos=
+  deviceId: 39333785
+

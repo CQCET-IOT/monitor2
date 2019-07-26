@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>温度趋势图</title>
+    <script src="./js/echarts.js"></script>
+    <script src="./js/jQery.min.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+<div id="main" style="width:1000px; height:500px;"></div>
+
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    myChart.setOption({
+        title: {
+            text: '温度趋势监控',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            name: "时间",
+            boundaryGap: false,
+            data: []
+        },
+        yAxis: {
+            name: "温度",
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} °'
+            },
+            axisPointer: {
+                snap: true
+            },
+            min: 'dataMin',
+            max: 'dataMax'
+        },
+        visualMap: {// 颜色的设置 dataRange
+            left: 'left',
+            bottom: '10%',
+            min: 20,
+            max: 35,
+            calculable: true,// 颜色呈条状
+            text: ['高', '低'],// 文本，默认为数值文本
+            inRange: {
+                color: ['green', 'yellow', 'red', 'darkred']
+            }
+        },
+        series: [
+            {
+                name: '温度',
+                type: 'line',
+                smooth: true,
+                //lineStyle: { color: 'red'},
+                data: []
+            }
+        ]
+    });
+
+    myChart.showLoading();  // 数据加载完之前先显示一段简单的loading动画
+
+    var timestamp = []; // 时间序列
+    var tempr = [];     // 温度值序列
+
+    // 从本机请求数据
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'http://127.0.0.1:8081/datapoints',
+            headers: {},
+            data: {
+                'datastreamId': '3303_0_5700',
+                'start': '2019-07-01T15:06:56.891',
+                'end': '2019-07-27T15:06:56.891',
+                'limit': 10000
+            },
+            success: function (jsondata, status, xhr) {
+                if (xhr.status == 200 && jsondata) {
+                    for (var i in jsondata.data.datastreams[0].datapoints) {
+                        timestamp[i] = jsondata.data.datastreams[0].datapoints[i].at;
+                        // 温度值取小数点后1位，四舍五入
+                        tempr[i] = jsondata.data.datastreams[0].datapoints[i].value.toFixed(1);
+                    }
+
+                    myChart.hideLoading();
+                    myChart.setOption({
+                        xAxis: {
+                            data: timestamp
+                        },
+                        series: [{
+                            data: tempr
+                        }]
+                    })
+                }
+            },
+            error: function (xhr, type) {
+                console.log('请求失败!');
+                myChart.hideLoading();
+            }
+        })
+    });
+
+</script>
+</body>
+</html>
