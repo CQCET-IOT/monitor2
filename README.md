@@ -86,5 +86,5 @@ public class DataPointsQueryService {
 }
 ```
 
-  [1]: https://github.com/CQCET-IOT/monitor2/raw/master/img/tempr-trend.png
+  [1]: https://github.com/CQCET-IOT/monitor2/raw/master/img/tempr-trend.jpg
   [2]: https://github.com/CQCET-IOT/monitor2/raw/master/img/sdk-desc.png
