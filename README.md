@@ -1,7 +1,7 @@
 # monitor2
 Monitor of OneNET Datapoints. 通过调用 OneNET SDK，获取一段时间内的温度值，并在前端展示温度曲线。
 
-![image_1dgra8s8o1ih9su66lih2l1q2b9.png-138.5kB][1]
+![tempr-trend][1]
 
 ### 开发环境
 1. jdk 1.8
@@ -13,7 +13,7 @@ Monitor of OneNET Datapoints. 通过调用 OneNET SDK，获取一段时间内的
 
 按照官方文档的说法，OneNET 提供了 SDK 供应用程序调用，其中 NB-IoT 应该使用 LWM2M API SDK。不过我尝试了一下，发现这个 SDK 功能极其有限，仅能完成 NB 设备的创建、读写、订阅等操作，并不能获取数据点。
 
-![image_1de2hvalcc8nvem1qf31d1716c79.png-105.6kB][2]
+![sdk-desc][2]
 
 然而，MQTT 的 SDK 功能则比较完善，实验验证也能够获取数据点，因此使用这个 SDK 来获取数据点，本例中获取的是一段时间以内的温度值。
 
@@ -86,5 +86,5 @@ public class DataPointsQueryService {
 }
 ```
 
-  [1]: http://static.zybuluo.com/morgen/fcnz5c8fv9rpvy6v77ov48tw/image_1dgra8s8o1ih9su66lih2l1q2b9.png
-  [2]: http://static.zybuluo.com/morgen/p5j5m2oxtlozu045jaa7srgv/image_1de2hvalcc8nvem1qf31d1716c79.png
+  [1]: https://github.com/CQCET-IOT/monitor2/raw/master/img/tempr-trend.png
+  [2]: https://github.com/CQCET-IOT/monitor2/raw/master/img/sdk-desc.png
