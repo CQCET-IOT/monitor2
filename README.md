@@ -1,7 +1,5 @@
 # monitor2
-Monitor of OneNET Datapoints
-
-通过调用 OneNET SDK，获取一段时间内的温度值，并在前端展示温度曲线。
+Monitor of OneNET Datapoints. 通过调用 OneNET SDK，获取一段时间内的温度值，并在前端展示温度曲线。
 
 ![image_1dgra8s8o1ih9su66lih2l1q2b9.png-138.5kB][1]
 
@@ -40,6 +38,8 @@ mvn install:install-file -DgroupId=cmcc.iot.onenet.javasdk -DartifactId=javaSDK 
 ```
 
 ### 编译运行
+
+修改 *resources\application.yml* 中的产品 *apiKey* 和设备 *deviceId*，当然，该“产品->设备”下需要存在温度数据流才可以看到数据。另外还可以调整 *webapp\index.html* 中的 Ajax 请求参数，比如调整时间区间等。
 
 在 IDEA 中点击 maven clean 和 maven package，编译成功后，打开 *MonitorApplication.java*，在 `main()` 函数上点击右键执行程序。
 
