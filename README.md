@@ -1,5 +1,6 @@
-# monitor2
-Monitor of OneNET Datapoints. 通过调用 OneNET SDK，获取一段时间内的温度值，并在前端展示温度曲线。
+# OneNET 趋势监控
+
+通过调用 OneNET SDK，获取一段时间内的温度值，并在前端展示温度曲线。
 
 ![tempr-trend][1]
 
