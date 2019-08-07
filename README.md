@@ -9,6 +9,7 @@
 2. maven 3.0+，构建工具
 3. IntelliJ IDEA，IDE
 4. git，版本维护工具
+5. Echarts，可视化控件
 
 ### OneNET SDK
 
